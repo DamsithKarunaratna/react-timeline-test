@@ -51,6 +51,10 @@ class NewTimeline extends Component {
                             let titleText = (index+1)+". "+stage.title;
                             let descriptionText = stage.description;
 
+                            var ico = (<svg height="20" width="20" >
+                                            <image width="20" height="20" xlinkHref={stage.icon}  />    
+                                        </svg>);
+
                             return(
                                 <TimelineEvent
                                     key={stage.s}
@@ -58,7 +62,7 @@ class NewTimeline extends Component {
                                     titleStyle={{fontSize:17}}
                                     subtitle={descriptionText}
                                     subtitleStyle={{fontSize:15}}
-                                    icon={<i />}
+                                    icon={ico}
                                     iconColor="#6fba1c"
                                     contentStyle={{fontSize:13}}
                                 >
