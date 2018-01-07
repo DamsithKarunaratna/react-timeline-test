@@ -43,7 +43,7 @@ class NewTimeline extends Component {
         else{
             
             return(
-                <div style={{backgroundColor: '#e1e1e1'}}>
+                <div style={{backgroundColor: '#f4f6f8'}}>
                     <Page title="Trace Back Timeline" separator>    
                         <Timeline>
                         {this.state.timeline.items.map((stage, index) => {
