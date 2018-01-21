@@ -57,7 +57,7 @@ class NewTimeline extends Component {
 
                             return(
                                 <TimelineEvent
-                                    key={stage.s}
+                                    key={index}
                                     title={titleText}
                                     titleStyle={{fontSize:17}}
                                     subtitle={descriptionText}
@@ -69,7 +69,7 @@ class NewTimeline extends Component {
                                     {
 
                                         Object.keys(stage.data).map(function (key) {
-                                            return <div> {stage.data[key].title}</div>;
+                                            return <div key={key}> {stage.data[key].title}</div>;
                                         })
 
                                     }
