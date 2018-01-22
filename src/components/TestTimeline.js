@@ -94,6 +94,7 @@ class NewTimeline extends Component {
                                     iconColor="#6fba1c"
                                     contentStyle={{fontSize:13}}
                                 >
+<<<<<<< HEAD
                                     
                                     <TimelineContent 
                                         collapseArray={this.state.array} 
@@ -101,6 +102,13 @@ class NewTimeline extends Component {
                                         data={stageData} 
                                         onClick={this.handleClick}
                                     />
+=======
+                                    {
+
+                                        Object.keys(stage.data).map(function (key) {
+                                            return <div key={key}> {stage.data[key].title}</div>;
+                                        })
+>>>>>>> f87e2a2b86b5ebc7e2412124c3d1b3e49a0f86b6
 
                                 </TimelineEvent>                                    
                             );
