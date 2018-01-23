@@ -119,21 +119,19 @@ class NewTimeline extends Component {
                                     contentStyle={{fontSize:13}}
                                     bubbleStyle={{border: "none"}}
                                 >
-<<<<<<< HEAD
                                     
-                                    <TimelineContent 
+                                    {/* <TimelineContent 
                                         collapseArray={this.state.array} 
                                         collapseArrayKey={index} 
                                         data={stageData} 
                                         onClick={this.handleClick}
-                                    />
-=======
-                                    {
+                                    /> */}
 
-                                        Object.keys(stage.data).map(function (key) {
-                                            return <div key={key}> {stage.data[key].title}</div>;
+                                    {
+                                        Object.keys(stageData).map(function (key) {
+                                            return <div key={key}> {stageData[key].title}</div>
                                         })
->>>>>>> f87e2a2b86b5ebc7e2412124c3d1b3e49a0f86b6
+                                    } 
 
                                 </TimelineEvent>                                    
                             );
