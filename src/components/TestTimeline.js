@@ -3,17 +3,23 @@ import React, { Component } from 'react';
 import * as axios from 'axios';
 import { Page } from '@shopify/polaris';
 import TimelineContent from './TimelineContent';
+import { isArray } from 'util';
 
 class NewTimeline extends Component {
 
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.isArray = this.isArray.bind(this);
         this.state = {
             array: [],
             timeline: "",
             istimelineLoading: true,
         };
+    }
+
+    isArray(element) {
+        return Object.prototype.toString.call(element) === '[object Array]';
     }
 
 
@@ -38,7 +44,7 @@ class NewTimeline extends Component {
         axios({
             method: 'get',
             //https://tracified-mock-api.herokuapp.com/Traceability_data/otp/customer-app
-            url: 'http://www.mocky.io/v2/5a66f8be2d0000ae07beccf3', headers: {
+            url: 'http://www.mocky.io/v2/5a6818df2d00002c3cbed081', headers: {
                 'Content-Type': 'text/plain;charset=utf-8',
             },
         })
@@ -66,8 +72,8 @@ class NewTimeline extends Component {
 
         let timelineTopStyle = {
             backgroundColor: 'rgba(0,0,0,0.8)', 
-            height: 130, 
-            width: 300,
+            height: 110, 
+            width: 220,
             marginLeft: 10,
             padding: 10
         };
@@ -89,16 +95,16 @@ class NewTimeline extends Component {
                             fied
                             </span> 
                         </h1>
-                        <p style={{color: 'white', fontSize: 12, textAlign: 'center', marginBottom: 3}}>Order ID: 1000</p>
-                        <p style={{color: 'white', fontSize: 12, textAlign: 'center', marginBottom: 3}}>Ordered by: Jhon Doe</p>
-                        <p style={{color: 'white', fontSize: 12, textAlign: 'center', marginBottom: 3}}>Ordered On: 18-01-2018</p>
+                        <p style={{color: 'white', fontSize: 12, textAlign: 'center', marginBottom: 1}}>Item ID: 1000</p>
+                        <p style={{color: 'white', fontSize: 12, textAlign: 'center', marginBottom: 1}}>Ordered by: Jhon Doe</p>
+                        <p style={{color: 'white', fontSize: 12, textAlign: 'center', marginBottom: 1}}>Ordered On: 18-01-2018</p>
                     
                     </div>
                     <div style={{paddingLeft: 30}}>
                         <Timeline>
                         {this.state.timeline.items.map((stage, index) => {
 
-                            let titleText = (index+1)+". "+stage.title;
+                            let titleText = "0"+(index+1)+". "+stage.title;
                             let descriptionText = stage.description;
 
                             var ico = (<svg height="50" width="35" >
@@ -129,7 +135,28 @@ class NewTimeline extends Component {
 
                                     {
                                         Object.keys(stageData).map(function (key) {
-                                            return <div key={key}> {stageData[key].title}</div>
+                                            if(isArray(stageData[key].value)) {
+                                                    
+                                                var vals = stageData[key].value;
+
+                                                return(
+                                                    <div key={key}>
+                                                        <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}>
+                                                                {stageData[key].title} :
+                                                        </span>
+                                                        {
+                                                            Object.keys(vals).map(function (key) {
+                                                                return(
+                                                                    <div><span style={{fontWeight: 'bold'}}>&nbsp;&nbsp;&nbsp;{vals[key].title}</span> : <span>{vals[key].value}</span></div>
+                                                                )
+                                                            })
+                                                        }
+                                                        
+                                                    </div>       
+                                                ); 
+                                                           
+                                            }
+                                            return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}> {stageData[key].title} :</span> {stageData[key].value}</div>
                                         })
                                     } 
 
