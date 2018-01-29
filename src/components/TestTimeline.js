@@ -1,27 +1,26 @@
 import {Timeline, TimelineEvent} from 'react-event-timeline'
 import React, { Component } from 'react';
 import * as axios from 'axios';
-import { Page } from '@shopify/polaris';
 import TimelineContent from './TimelineContent';
-import { isArray } from 'util';
 
 class NewTimeline extends Component {
 
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
-        this.isArray = this.isArray.bind(this);
+        // this.showMessage = this.showMessage.bind(this);
         this.state = {
             array: [],
             timeline: "",
             istimelineLoading: true,
+            // isColap:true
         };
     }
 
-    isArray(element) {
-        return Object.prototype.toString.call(element) === '[object Array]';
-    }
-
+    // showMessage = () => {
+    //     this.setState({isColap:!this.state.isColap});
+    //     console.log();
+    // }
 
     handleClick = (index, isClosed) => {
 
@@ -63,6 +62,7 @@ class NewTimeline extends Component {
                     timeline: timeline,
                     istimelineLoading: false,
                     array: arr
+                    
                 });
             });
 
@@ -70,6 +70,7 @@ class NewTimeline extends Component {
 
     render(){
 
+        // var divStyle = this.state.isColap ? {overflow:"hidden", height:109} : {};
         let timelineTopStyle = {
             backgroundColor: 'rgba(0,0,0,0.8)', 
             height: 110, 
@@ -124,19 +125,20 @@ class NewTimeline extends Component {
                                     icon={ico}
                                     contentStyle={{fontSize:13}}
                                     bubbleStyle={{border: "none"}}
-                                >
+                                    // onClick={this.showMessage}
+                                ><div id={index}>
                                     
-                                    {/* <TimelineContent 
+                                    <TimelineContent 
                                         collapseArray={this.state.array} 
                                         collapseArrayKey={index} 
                                         data={stageData} 
                                         onClick={this.handleClick}
-                                    /> */}
+                                    />
 
-                                    {
+                                    {/* { 
+                                        
                                         Object.keys(stageData).map(function (key) {
-                                            if(isArray(stageData[key].value)) {
-                                                    
+                                            if(isArray(stageData[key].value)) {   
                                                 var vals = stageData[key].value;
 
                                                 return(
@@ -146,6 +148,7 @@ class NewTimeline extends Component {
                                                         </span>
                                                         {
                                                             Object.keys(vals).map(function (key) {
+                                                                
                                                                 return(
                                                                     <div><span style={{fontWeight: 'bold'}}>&nbsp;&nbsp;&nbsp;{vals[key].title}</span> : <span>{vals[key].value}</span></div>
                                                                 )
@@ -158,8 +161,9 @@ class NewTimeline extends Component {
                                             }
                                             return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}> {stageData[key].title} :</span> {stageData[key].value}</div>
                                         })
-                                    } 
+                                    }  */}
 
+                                </div>            
                                 </TimelineEvent>                                    
                             );
 
