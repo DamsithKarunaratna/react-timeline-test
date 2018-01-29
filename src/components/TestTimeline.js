@@ -131,7 +131,8 @@ class NewTimeline extends Component {
                                     <TimelineContent 
                                         collapseArray={this.state.array} 
                                         collapseArrayKey={index} 
-                                        data={stageData} 
+                                        data={stageData}
+                                        componentID={"component"+index} 
                                         onClick={this.handleClick}
                                     />
 
