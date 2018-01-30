@@ -78,9 +78,7 @@ class TimelineContent extends Component {
                 </div>
                 
                 <Stack distribution="trailing">
-                
-                {buttonCode}
-                
+                    {buttonCode}
                 </Stack>
                    
             </div>
