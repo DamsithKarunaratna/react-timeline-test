@@ -70,7 +70,6 @@ class NewTimeline extends Component {
 
     render(){
 
-        // var divStyle = this.state.isColap ? {overflow:"hidden", height:109} : {};
         let timelineTopStyle = {
             backgroundColor: 'rgba(0,0,0,0.8)', 
             height: 110, 
@@ -125,7 +124,6 @@ class NewTimeline extends Component {
                                     icon={ico}
                                     contentStyle={{fontSize:13}}
                                     bubbleStyle={{border: "none"}}
-                                    // onClick={this.showMessage}
                                 ><div id={index}>
                                     
                                     <TimelineContent 
@@ -135,34 +133,6 @@ class NewTimeline extends Component {
                                         componentID={"component"+index} 
                                         onClick={this.handleClick}
                                     />
-
-                                    {/* { 
-                                        
-                                        Object.keys(stageData).map(function (key) {
-                                            if(isArray(stageData[key].value)) {   
-                                                var vals = stageData[key].value;
-
-                                                return(
-                                                    <div key={key}>
-                                                        <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}>
-                                                                {stageData[key].title} :
-                                                        </span>
-                                                        {
-                                                            Object.keys(vals).map(function (key) {
-                                                                
-                                                                return(
-                                                                    <div><span style={{fontWeight: 'bold'}}>&nbsp;&nbsp;&nbsp;{vals[key].title}</span> : <span>{vals[key].value}</span></div>
-                                                                )
-                                                            })
-                                                        }
-                                                        
-                                                    </div>       
-                                                ); 
-                                                           
-                                            }
-                                            return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}> {stageData[key].title} :</span> {stageData[key].value}</div>
-                                        })
-                                    }  */}
 
                                 </div>            
                                 </TimelineEvent>                                    

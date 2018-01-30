@@ -59,15 +59,18 @@ class TimelineContent extends Component {
                                     <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}>
                                             {stageData[key].title} :
                                     </span>
+                                    <Row>
                                     {
                                         Object.keys(vals).map(function (key) {
                                             
                                             return(
+                                                <Col xs='12' sm='6'>
                                                 <div key={key}><span style={{fontWeight: 'bold'}}>&nbsp;&nbsp;&nbsp;{vals[key].title}</span> : <span>{vals[key].value}</span></div>
+                                                </Col>
                                             )
                                         })
                                     }
-                                    
+                                    </Row>
                                 </div>       
                             ); 
                                         
