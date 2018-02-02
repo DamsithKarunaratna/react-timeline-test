@@ -72,7 +72,7 @@ class TimelineContent extends Component {
                             ); 
                                         
                         }
-                        return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}> {stageData[key].title} :</span> {stageData[key].value}</div>
+                        return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14}}> {stageData[key].title} :</span> {stageData[key].value}</div>
                     })
                 } 
                 </div>
