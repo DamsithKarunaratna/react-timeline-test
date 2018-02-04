@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col} from 'reactstrap';
 import { Button, Stack } from '@shopify/polaris';
-import {isArray} from 'util';
+import { isObject } from 'util';
 
 class TimelineContent extends Component {
 
@@ -51,8 +51,14 @@ class TimelineContent extends Component {
                 { 
                     
                     Object.keys(stageData).map(function (key) {
-                        if(isArray(stageData[key].value)) {   
-                            var vals = stageData[key].value;
+                        
+                        let subGroup = stageData[key];
+
+                        if(subGroup.hasOwnProperty("value")){
+                            // subgroups which have the value field set won't have grouping
+                            // In the subgroups with grouping the groups will be stored as objects  
+                            return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14}}> {subGroup.title} :</span> {subGroup.value}</div>
+                        } else {
 
                             return(
                                 <div key={key}>
@@ -60,19 +66,23 @@ class TimelineContent extends Component {
                                             {stageData[key].title} :
                                     </span>
                                     {
-                                        Object.keys(vals).map(function (key) {
+                                        Object.keys(subGroup).map((innerKey)=>{
+                                
+                                            if(isObject(subGroup[innerKey])){
+                                                return(
+                                                    <div key={innerKey}><span style={{fontWeight: 'bold'}}>&nbsp;&nbsp;&nbsp;{subGroup[innerKey].title}</span> : <span>{subGroup[innerKey].value}</span></div>
+                                                )
+                                            }
+                                            return null;
                                             
-                                            return(
-                                                <div key={key}><span style={{fontWeight: 'bold'}}>&nbsp;&nbsp;&nbsp;{vals[key].title}</span> : <span>{vals[key].value}</span></div>
-                                            )
                                         })
                                     }
                                     
                                 </div>       
-                            ); 
-                                        
+                            );
+                           
                         }
-                        return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14}}> {stageData[key].title} :</span> {stageData[key].value}</div>
+                        
                     })
                 } 
                 </div>

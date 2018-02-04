@@ -42,14 +42,16 @@ class NewTimeline extends Component {
     componentDidMount() {
         axios({
             method: 'get',
-            //https://tracified-mock-api.herokuapp.com/Traceability_data/otp/customer-app
-            url: 'http://www.mocky.io/v2/5a6818df2d00002c3cbed081', headers: {
-                'Content-Type': 'text/plain;charset=utf-8',
+            // array based api -> http://www.mocky.io/v2/5a6818df2d00002c3cbed081
+            // http://www.mocky.io/v2/5a765d702e000067006ab27b
+            url: 'http://www.mocky.io/v2/5a765d702e000067006ab27b', headers: {
+                'Content-Type': 'application/json;charset=utf-8',
             },
         })
             .then(response => {
-                let timeline = response.data[2];
-                let itms = response.data[2].items;
+                let timeline = response.data.tabs[2];
+                console.log(timeline);
+                let itms = timeline.items;
 
                 let arr = [];
 
@@ -70,7 +72,6 @@ class NewTimeline extends Component {
 
     render(){
 
-        // var divStyle = this.state.isColap ? {overflow:"hidden", height:109} : {};
         let timelineTopStyle = {
             backgroundColor: 'rgba(0,0,0,0.8)', 
             height: 110, 
@@ -105,7 +106,7 @@ class NewTimeline extends Component {
                         <Timeline>
                         {this.state.timeline.items.map((stage, index) => {
 
-                            let titleText = "0"+(index+1)+". "+stage.title;
+                            let titleText = (index+1)+". "+stage.title;
                             let descriptionText = stage.description;
 
                             var ico = (<svg height="50" width="35" >
@@ -135,35 +136,6 @@ class NewTimeline extends Component {
                                         componentID={"component"+index} 
                                         onClick={this.handleClick}
                                     />
-
-                                    {/* { 
-                                        
-                                        Object.keys(stageData).map(function (key) {
-                                            if(isArray(stageData[key].value)) {   
-                                                var vals = stageData[key].value;
-
-                                                return(
-                                                    <div key={key}>
-                                                        <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}>
-                                                                {stageData[key].title} :
-                                                        </span>
-                                                        {
-                                                            Object.keys(vals).map(function (key) {
-                                                                
-                                                                return(
-                                                                    <div><span style={{fontWeight: 'bold'}}>&nbsp;&nbsp;&nbsp;{vals[key].title}</span> : <span>{vals[key].value}</span></div>
-                                                                )
-                                                            })
-                                                        }
-                                                        
-                                                    </div>       
-                                                ); 
-                                                           
-                                            }
-                                            return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}> {stageData[key].title} :</span> {stageData[key].value}</div>
-                                        })
-                                    }  */}
-
                                 </div>            
                                 </TimelineEvent>                                    
                             );
