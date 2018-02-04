@@ -21,7 +21,7 @@ class TimelineContent extends Component {
 
     componentDidMount() {
         this.height = document.getElementById(this.props.componentID).clientHeight;
-        if(this.height > 109){
+        if(this.height > 105){
             this.setState({isCollsapsible:true});
         }  
         console.log(this.height);
@@ -33,7 +33,7 @@ class TimelineContent extends Component {
         var isClosed = this.props.collapseArray[this.props.collapseArrayKey];
         // var buttonText = this.props.collapseArray[this.props.collapseArrayKey] ? {text: "see less \u25B2"} : {text: "see more \u25BC"};
         var buttonText = this.props.collapseArray[this.props.collapseArrayKey] ? {text: "see less   "} : {text: "see more..."};
-        var divStyle = this.state.isCollsapsible ? (!this.state.collapseArray[this.props.collapseArrayKey] ? {overflow:"hidden", height:109, transition: 'all 0.7s ease-in-out'} : {overflow:"hidden", height:this.height, transition: 'all 0.7s ease-in-out'}) : {} ;
+        var divStyle = this.state.isCollsapsible ? (!this.state.collapseArray[this.props.collapseArrayKey] ? {overflow:"hidden", height:105, transition: 'all 0.7s ease-in-out'} : {overflow:"hidden", height:this.height, transition: 'all 0.7s ease-in-out'}) : {} ;
         var buttonCode = <p></p>;
 
         if(this.state.isCollsapsible){
@@ -87,9 +87,13 @@ class TimelineContent extends Component {
                 } 
                 </div>
                 
-                <Stack distribution="trailing">
+                <div style={{background:"white", opacity:"0.5", paddingLeft:"60", paddingRight:0}}>
+          
+                    <div style={{ }}>
                     {buttonCode}
-                </Stack>
+                    </div>
+         
+                </div>
                    
             </div>
         );    
