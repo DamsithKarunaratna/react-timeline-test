@@ -57,12 +57,12 @@ class TimelineContent extends Component {
                         if(subGroup.hasOwnProperty("value")){
                             // subgroups which have the value field set won't have grouping
                             // In the subgroups with grouping the groups will be stored as objects  
-                            return <div key={key} style={{ height:24}}> <span style={{fontWeight:'bold', fontSize: 14}}>&#8227; {subGroup.title} :</span> {subGroup.value}</div>
+                            return <div key={key} style={{ height:35}}> <span style={{fontWeight:'bold', fontSize: 14}}>&#8227; {subGroup.title} :</span> {subGroup.value}</div>
                         } else {
 
                             return(
                                 <div key={key}>
-                                <div style={{height:24}}>
+                                <div style={{height:35}}>
                                     <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}>
                                         &#8227; {stageData[key].title} :
                                     </span>
@@ -72,7 +72,7 @@ class TimelineContent extends Component {
                                 
                                             if(isObject(subGroup[innerKey])){
                                                 return(
-                                                    <div key={innerKey} style={{height:24}}><span style={{fontWeight: 'bold', paddingLeft: '3em'}}>{subGroup[innerKey].title}</span> : <span>{subGroup[innerKey].value}</span></div>
+                                                    <div key={innerKey} style={{height:35, paddingLeft: '3em'}}><span style={{fontWeight: 'bold'}}>{subGroup[innerKey].title}</span> : <span>{subGroup[innerKey].value}</span></div>
                                                 )
                                             }
                                             return null;
