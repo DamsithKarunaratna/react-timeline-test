@@ -20,7 +20,7 @@ class TimelineContent extends Component {
     }
 
     componentDidMount() {
-        this.height = document.getElementById(this.props.componentID).clientHeight;
+        this.height = document.getElementById(this.props.componentID).clientHeight+15;
         if(this.height > 109){
             this.setState({isCollsapsible:true});
         }  
@@ -33,8 +33,9 @@ class TimelineContent extends Component {
         var isClosed = this.props.collapseArray[this.props.collapseArrayKey];
         var buttonText = this.props.collapseArray[this.props.collapseArrayKey] ? {text: "see less \u25B2"} : {text: "see more \u25BC"};
         // var buttonText = this.props.collapseArray[this.props.collapseArrayKey] ? {text: "see less   "} : {text: "see more..."};
-        var divStyle = this.state.isCollsapsible ? (!this.state.collapseArray[this.props.collapseArrayKey] ? {overflow:"hidden", height:109, transition: 'all 0.7s ease-in-out'} : {overflow:"hidden", height:this.height, transition: 'all 0.7s ease-in-out'}) : {} ;
+        var divStyle = this.state.isCollsapsible ? (!this.state.collapseArray[this.props.collapseArrayKey] ? {overflow:"hidden", height:109, transition: 'all 0.7s ease-in-out'} : {overflow:"hidden", height:this.height, transition: 'all 0.7s ease-in-out'}) : { backgroundColor:'#eeeeee', borderRadius:4} ;
         var buttonCode = <p></p>;
+        var seeMoreStyle = !this.props.collapseArray[this.props.collapseArrayKey] ? {background: 'linear-gradient(rgba(255,255,255,1), white)', position:'relative', bottom:'0px', boxShadow:'0px -8px 10px -1px rgba(255,255,255,1)'}: {};
 
         if(this.state.isCollsapsible){
             buttonCode =     <Button plain 
@@ -55,10 +56,12 @@ class TimelineContent extends Component {
                             var vals = stageData[key].value;
 
                             return(
-                                <div key={key}>
+                                <div key={key} style={{boxShadow:'0px 1px 5px 1px rgba(189,189,189,0.52)', margin:7, padding:5, borderRadius:4, backgroundColor:'#fafafa'}}>
+                                    <div style={{}}>
                                     <span style={{fontWeight:'bold', fontSize: 14, color:'green'}}>
                                             {stageData[key].title} :
                                     </span>
+                                    </div>
                                     <Row>
                                     {
                                         Object.keys(vals).map(function (key) {
@@ -75,14 +78,14 @@ class TimelineContent extends Component {
                             ); 
                                         
                         }
-                        return <div key={key}> <span style={{fontWeight:'bold', fontSize: 14}}> {stageData[key].title} :</span> {stageData[key].value}</div>
+                        return <div key={key} style={{paddingLeft:14}}> <span style={{fontWeight:'bold', fontSize: 14}}> {stageData[key].title} :</span> {stageData[key].value}</div>
                     })
                 } 
                 </div>
                 
-                <Stack distribution="trailing">
+                <div style={seeMoreStyle}>
                     {buttonCode}
-                </Stack>
+                </div>
                    
             </div>
         );    
